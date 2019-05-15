@@ -8,6 +8,8 @@ pipeline {
                 sh 'pwd jmeter'
                 sh 'cd jmeter'
                 sh 'ls -lrt'
+                sh 'cd jmeter'
+                sh 'ls -lrt'
             }
         }
     }
