@@ -8,7 +8,7 @@ pipeline {
                 sh '''
 
                 	cd jmeter
-		filedate = `date +%Y%m%d%H%M%S`
+		filedate = "20190516"
 		result = "result"$filedate".jtl"
 		log = "log"$filedate".txt"
 		/jmeter/apache-jmeter-5.1.1/bin/jmeter -n -t Demo.jmx -l /jmeterdocker/test/report/jtl/$result -j /jmeterdocker/test/report/outputdata/$log
