@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'ls -lrt /jmeterdocker'
+                sh 'ls -lrt /jmeterdocker/workspace'
             }
         }
     }
