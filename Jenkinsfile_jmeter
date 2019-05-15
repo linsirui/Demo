@@ -1,32 +1,12 @@
 pipeline {
-  agent any
-  stages {
-    stage('build') {
-      steps {
-        
-        echo 'build stage'
-      }
+    agent {
+        docker { image 'jmeter' }
     }
-    stage('jmeter') {
-    agent{
-    docker{
-    image 'jmeter'
-    label 'dockerslave'
-    args '-v /opt/jmeter/result:/jmeterdocker/test/report/html'
+    stages {
+        stage('Test') {
+            steps {
+                sh 'ls -lrt /jmeterdocker'
+            }
+        }
     }
-    }
-      steps {
-        echo 'test stage'
-	echo '${env.APIEndpoint}'
-	sh '''
-		cd jmeter
-		filedate = `date +%Y%m%d%H%M%S`
-		result = "result"$filedate".jtl"
-		log = "log"$filedate".txt"
-		/jmeter/apache-jmeter-5.1.1/bin/jmeter -n -t Demo.jmx -l /jmeterdocker/test/report/jtl/$result -j /jmeterdocker/test/report/outputdata/$log
-		/jmeter/apache-jmeter-5.1.1/bin/jmeter -g /jmeterdocker/test/report/jtl/$result -o /jmeterdocker/test/report/html/result
-           '''
-      }
-    }
-  }
 }
