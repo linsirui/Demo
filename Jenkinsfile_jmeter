@@ -10,8 +10,8 @@ pipeline {
     stage('jmeter') {
     agent{
     docker{
-    image 'jmeterformance'
-    label 'docker'
+    image 'jmeter'
+    label 'dockerslave'
     args '-v /opt/jmeter/result:/jmeterdocker/test/report/html'
     }
     }
