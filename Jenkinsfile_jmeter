@@ -8,10 +8,7 @@ pipeline {
                 sh '''
 
                 	cd jmeter
-		
-		result = "result20190516.jtl"
-		log = "log20190516.txt"
-		/jmeter/apache-jmeter-5.1.1/bin/jmeter -n -t Demo.jmx -l /jmeterdocker/test/report/jtl/$result -j /jmeterdocker/test/report/outputdata/$log
+		/jmeter/apache-jmeter-5.1.1/bin/jmeter -n -t Demo.jmx -l /jmeterdocker/test/report/jtl/result20190516.jtl -j /jmeterdocker/test/report/outputdata/log20190516.txt
 		/jmeter/apache-jmeter-5.1.1/bin/jmeter -g /jmeterdocker/test/report/jtl/$result -o /jmeterdocker/test/report/html/result
                 	'''
              
