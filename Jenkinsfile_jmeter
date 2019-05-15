@@ -11,14 +11,11 @@ pipeline {
 		/jmeterdocker/apache-jmeter-5.1.1/bin/jmeter.sh -n -t Demo.jmx -l /jmeterdocker/test/report/jtl/result20190516.jtl -j /jmeterdocker/test/report/outputdata/log20190516.txt
 		/jmeterdocker/apache-jmeter-5.1.1/bin/jmeter -g /jmeterdocker/test/report/jtl/result20190516.jtl -o /result
                 	'''
+                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/result', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
              
             }
         }
 
-        stage('Report'){
-        	steps{
-        	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/result', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-        	}
-        }
+        
     }
 }
