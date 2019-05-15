@@ -5,11 +5,13 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'pwd jmeter'
+                sh 'pwd'
                 sh 'cd jmeter'
                 sh 'ls -lrt'
+                sh 'pwd'
                 sh 'cd jmeter'
                 sh 'ls -lrt'
+                sh 'pwd'
             }
         }
     }
