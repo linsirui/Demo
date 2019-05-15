@@ -14,5 +14,11 @@ pipeline {
              
             }
         }
+
+        stage('Report'){
+        	steps{
+        	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/jmeterdocker/test/report/html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+        	}
+        }
     }
 }
