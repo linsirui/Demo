@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        env.APIEndpoint ="192.168.1.10"
+        
         echo 'build stage'
       }
     }
