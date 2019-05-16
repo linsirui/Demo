@@ -3,7 +3,7 @@ pipeline {
         docker 
         { 
         image 'jmeter'
-        args '-v /jmeterdocker/test/report/html:/jmeterdocker/workspace/Jmeterdocker/resultcd' }
+        args '-v /jmeterdocker/test/report/html:/jmeterdocker/workspace/Jmeterdocker/result' }
     }
     stages {
         stage('Test') {
