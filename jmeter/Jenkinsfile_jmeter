@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+        docker 
+        { 
+        image 'jmeter'
+        args '-v /jmeterdocker/workspace/Jmeterdocker/result:/jmeterdocker/test/report/html' }
+    }
+    stages {
+        stage('Test') {
+            env.hello = 'me'
+            steps {
+                sh '''
+
+                	cd jmeter
+		/jmeterdocker/apache-jmeter-5.1.1/bin/jmeter.sh -n -t Demo.jmx -l /jmeterdocker/test/report/jtl/result20190516.jtl -j /jmeterdocker/test/report/outputdata/log20190516.txt
+		/jmeterdocker/apache-jmeter-5.1.1/bin/jmeter -g /jmeterdocker/test/report/jtl/result20190516.jtl -o /jmeterdocker/test/report/html
+                	'''
+                	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/jmeterdocker/workspace/Jmeterdocker/result', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+             
+            }
+        }
+
+        
+    }
+}
