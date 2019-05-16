@@ -9,10 +9,12 @@ pipeline {
         stage('Test') {
             
             steps {
+
+            env.SERVERIP = '192.168.1.1'
                 sh '''
 
                 	cd jmeter
-		/jmeterdocker/apache-jmeter-5.1.1/bin/jmeter.sh -n -t Demo.jmx -Jhello=me -l /jmeterdocker/test/report/jtl/result20190516.jtl -j /jmeterdocker/test/report/outputdata/log20190516.txt
+		/jmeterdocker/apache-jmeter-5.1.1/bin/jmeter.sh -n -t Demo.jmx -Jhello=$SERVERIP -l /jmeterdocker/test/report/jtl/result20190516.jtl -j /jmeterdocker/test/report/outputdata/log20190516.txt
 		/jmeterdocker/apache-jmeter-5.1.1/bin/jmeter -g /jmeterdocker/test/report/jtl/result20190516.jtl -o /jmeterdocker/test/report/html
                 	'''
                 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/jmeterdocker/workspace/Jmeterdocker/result', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
